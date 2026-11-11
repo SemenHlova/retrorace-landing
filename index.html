@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ретро Авто (RetroRace) — Оренда класичних автомобілів</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Шрифти -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Іконки FontAwesome (для гамбургера тощо) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#1B382B',
+              'green-hover': '#264E3C',
+              cream: '#F7F5EE',
+              gold: '#D4A359',
+              dark: '#111827',
+              border: '#E5E2D8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Cabinet Grotesk', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#F7F5EE] text-[#111827] font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Інформаційна смужка анонсів зверху -->
+  <aside class="bg-[#1B382B] text-white text-center py-2 px-4 text-xs font-semibold tracking-wider uppercase">
+    🏁 Живий календар, чесний калькулятор і страхування без дрібного шрифту. Оберіть дату та клас авто!
+  </aside>
+
+  <!-- 1. Семантичний Header -->
+  <header class="bg-[#F7F5EE]/95 backdrop-blur-md border-b border-[#E5E2D8] sticky top-0 z-50">
+    <div class="flex items-center justify-between px-6 py-4 lg:px-12 w-full max-w-7xl mx-auto">
+      <div class="flex items-center gap-8">
+        <a href="#" class="flex items-center gap-3 flex-shrink-0">
+          <img src="assets/images/logo.png" alt="RetroRace" class="h-8 md:h-10 w-auto" onerror="this.onerror=null; this.src='assets/images/logo.svg';">
+          <span class="text-xl sm:text-2xl font-black tracking-tight text-[#1B382B] font-display">
+            <span class="text-[#D4A359]">РЕТРО</span> АВТО
+          </span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6" aria-label="Головна навігація">
+          <a href="#about" class="text-xs font-bold uppercase tracking-wider text-[#111827] hover:text-[#1B382B] transition-colors">Головна</a>
+          <a href="#how" class="text-xs font-bold uppercase tracking-wider text-[#111827] hover:text-[#1B382B] transition-colors">Як це працює</a>
+          <a href="#features" class="text-xs font-bold uppercase tracking-wider text-[#111827] hover:text-[#1B382B] transition-colors">Послуги</a>
+          <a href="#catalog" class="text-xs font-bold uppercase tracking-wider text-[#111827] hover:text-[#1B382B] transition-colors">Авто</a>
+          <a href="#blog" class="text-xs font-bold uppercase tracking-wider text-[#111827] hover:text-[#1B382B] transition-colors">Популярне</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="#login" class="hidden sm:inline-block border border-[#111827] py-2 px-4 text-xs font-bold uppercase rounded-md text-[#111827] hover:bg-black/5 transition">Увійти</a>
+        <a href="#catalog" class="bg-[#1B382B] text-white py-2 px-5 text-xs font-bold uppercase rounded-md hover:bg-[#264E3C] transition shadow-sm">Бронювати</a>
+        <button id="mobile-btn" class="md:hidden text-2xl text-[#111827] focus:outline-none" aria-label="Мобільне меню">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Мобільне меню (випадає на смартфонах) -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-t border-[#E5E2D8] bg-[#F7F5EE]">
+      <nav class="flex flex-col gap-3 pt-3">
+        <a href="#about" class="text-xs font-bold uppercase tracking-wider text-[#111827]">Головна</a>
+        <a href="#how" class="text-xs font-bold uppercase tracking-wider text-[#111827]">Як це працює</a>
+        <a href="#features" class="text-xs font-bold uppercase tracking-wider text-[#111827]">Послуги</a>
+        <a href="#catalog" class="text-xs font-bold uppercase tracking-wider text-[#111827]">Авто</a>
+        <a href="#blog" class="text-xs font-bold uppercase tracking-wider text-[#111827]">Популярне</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Головна частина -->
+  <main class="flex-grow">
+
+    <!-- 2. Hero-секція на всю ширину з фоновим автомобілем -->
+    <section id="about" class="w-full mb-12">
+      <div class="relative w-full min-h-[580px] sm:min-h-[640px] bg-cover bg-bottom flex justify-center shadow-lg"
+           style="background-image: url('assets/images/hero-car.jpg');">
+        <div class="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start bg-gradient-to-b from-[#F7F5EE]/95 via-[#F7F5EE]/75 to-transparent">
+          <div class="text-center md:text-left">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111827] leading-tight font-display">
+              Орендуйте класику для<br>моменту, що вартий<br>історії
+            </h1>
+          </div>
+          <div class="text-center md:text-left flex flex-col items-center md:items-start">
+            <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-6 max-w-md">
+              Живий календар, чесний калькулятор і страхування без дрібного шрифту. Оберіть дату, подію та клас авто — і ми подбаємо про решту.
+            </p>
+            <div class="flex flex-row gap-3 w-full sm:w-auto justify-center">
+              <a href="#catalog" class="flex-1 sm:flex-none text-center bg-[#1B382B] text-white py-3 px-6 text-xs font-bold uppercase rounded-md hover:bg-[#264E3C] transition shadow-md">Обрати авто</a>
+              <a href="#how" class="flex-1 sm:flex-none text-center bg-white/70 backdrop-blur-md border border-[#111827]/40 text-[#111827] py-3 px-6 text-xs font-bold uppercase rounded-md hover:bg-white transition">Як це працює</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Секція УТП: Передача ключів -->
+    <section id="features" class="py-16 border-b border-[#E5E2D8] bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <img src="assets/images/feature-handover.jpg" alt="Передача ключів від ретро авто" class="w-full h-auto object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-[#D4A359]">Переваги</span>
+          <h2 class="text-3xl font-black text-[#111827] mt-1 mb-4 font-display">Жодних сюрпризів, тільки чиста класика</h2>
+          <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+            Ми створили сервіс, де оренда ретро-автомобіля така ж проста, як вибір дати. Ви бачите все одразу — ціну, доступність і умови.
+          </p>
+          <div class="space-y-4 mb-6">
+            <div class="border-l-4 border-[#1B382B] pl-4">
+              <h3 class="font-bold text-base text-[#111827]">Live-календар доступності</h3>
+              <p class="text-xs text-gray-500">Бачите вільні дати в реальному часі без дзвінків і довгих очікувань.</p>
+            </div>
+            <div class="border-l-4 border-[#1B382B] pl-4">
+              <h3 class="font-bold text-base text-[#111827]">Прозорий калькулятор</h3>
+              <p class="text-xs text-gray-500">Погодинний або добовий тариф, який рахує сам і без прихованих комісій.</p>
+            </div>
+            <div class="border-l-4 border-[#1B382B] pl-4">
+              <h3 class="font-bold text-base text-[#111827]">Чесне страхування</h3>
+              <p class="text-xs text-gray-500">Обираєте пакет захисту, який потрібен саме вам, без нав'язаних послуг.</p>
+            </div>
+          </div>
+          <a href="#how" class="text-sm font-bold text-[#1B382B] hover:text-[#D4A359] transition">Детальніше про умови &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Секція процесу та додатка -->
+    <section id="how" class="py-16 bg-[#F7F5EE] border-b border-[#E5E2D8]">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#D4A359]">Процес</span>
+          <h2 class="text-3xl font-black text-[#111827] mt-1 mb-4 font-display">Оберіть дату, здійсніть передоплату</h2>
+          <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+            Процес бронювання оптимізований під швидкість та мобільні пристрої. Керуйте замовленням у кілька дотиків.
+          </p>
+          <ul class="space-y-3 mb-8 text-sm font-medium">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#1B382B]"></i> Миттєве підтвердження за 60 секунд</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#1B382B]"></i> Гнучкі умови повернення застави</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#1B382B]"></i> Цілодобова технічна підтримка в дорозі</li>
+          </ul>
+          <a href="#catalog" class="bg-[#1B382B] text-white py-3 px-6 text-xs font-bold uppercase rounded-md hover:bg-[#264E3C] transition shadow-md">Почати підбір</a>
+        </div>
+        <div class="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg">
+          <img src="assets/images/booking-app.jpg" alt="Бронювання через смартфон" class="w-full h-auto object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Каталог автомобілів (CSS Grid на 6 карток) -->
+    <section id="catalog" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#D4A359]">Автопарк</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-[#111827] font-display mt-1">Автомобілі клубу</h2>
+          <p class="text-gray-600 text-sm mt-2">Оберіть культову модель для весілля, зйомок або поїздки вихідного дня</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Картка 1 -->
+          <article class="bg-white rounded-lg border border-[#E5E2D8] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+            <div class="relative h-56 w-full">
+              <img src="assets/images/car-1.jpg" alt="Ford Model T" class="w-full h-full object-cover">
+              <span class="absolute top-3 right-3 bg-[#1B382B] text-white text-[11px] font-bold px-2.5 py-1 rounded">1926</span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111827]">Ford Model T Roadster</h3>
+              <p class="text-[#D4A359] font-bold text-sm mt-1">від $80 / год</p>
+              <div class="flex justify-between border-t border-b border-[#E5E2D8] py-2 my-4 text-xs text-gray-500 mt-auto">
+                <span>Епоха: <strong class="text-gray-800">1920-ті</strong></span>
+                <span>Кузов: <strong class="text-gray-800">Кабріолет</strong></span>
+              </div>
+              <a href="#catalog" class="w-full text-center py-2.5 border border-[#1B382B] text-[#1B382B] text-xs font-bold uppercase rounded-md hover:bg-[#1B382B] hover:text-white transition">Бронювати</a>
+            </div>
+          </article>
+
+          <!-- Картка 2 -->
+          <article class="bg-white rounded-lg border border-[#E5E2D8] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+            <div class="relative h-56 w-full">
+              <img src="assets/images/car-2.jpg" alt="Volkswagen Beetle" class="w-full h-full object-cover">
+              <span class="absolute top-3 right-3 bg-[#1B382B] text-white text-[11px] font-bold px-2.5 py-1 rounded">1968</span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111827]">Volkswagen Beetle Classic</h3>
+              <p class="text-[#D4A359] font-bold text-sm mt-1">від $50 / год</p>
+              <div class="flex justify-between border-t border-b border-[#E5E2D8] py-2 my-4 text-xs text-gray-500 mt-auto">
+                <span>Епоха: <strong class="text-gray-800">1960-ті</strong></span>
+                <span>Кузов: <strong class="text-gray-800">Купе</strong></span>
+              </div>
+              <a href="#catalog" class="w-full text-center py-2.5 border border-[#1B382B] text-[#1B382B] text-xs font-bold uppercase rounded-md hover:bg-[#1B382B] hover:text-white transition">Бронювати</a>
+            </div>
+          </article>
+
+          <!-- Картка 3 -->
+          <article class="bg-white rounded-lg border border-[#E5E2D8] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+            <div class="relative h-56 w-full">
+              <img src="assets/images/car-3.jpg" alt="Volvo 242 Classic" class="w-full h-full object-cover">
+              <span class="absolute top-3 right-3 bg-[#1B382B] text-white text-[11px] font-bold px-2.5 py-1 rounded">1974</span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111827]">Volvo 242 Classic</h3>
+              <p class="text-[#D4A359] font-bold text-sm mt-1">від $60 / год</p>
+              <div class="flex justify-between border-t border-b border-[#E5E2D8] py-2 my-4 text-xs text-gray-500 mt-auto">
+                <span>Епоха: <strong class="text-gray-800">1970-ті</strong></span>
+                <span>Кузов: <strong class="text-gray-800">Седан</strong></span>
+              </div>
+              <a href="#catalog" class="w-full text-center py-2.5 border border-[#1B382B] text-[#1B382B] text-xs font-bold uppercase rounded-md hover:bg-[#1B382B] hover:text-white transition">Бронювати</a>
+            </div>
+          </article>
+
+          <!-- Картка 4 -->
+          <article class="bg-white rounded-lg border border-[#E5E2D8] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+            <div class="relative h-56 w-full">
+              <img src="assets/images/car-4.jpg" alt="Cadillac DeVille" class="w-full h-full object-cover">
+              <span class="absolute top-3 right-3 bg-[#1B382B] text-white text-[11px] font-bold px-2.5 py-1 rounded">1959</span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111827]">Cadillac DeVille Luxury</h3>
+              <p class="text-[#D4A359] font-bold text-sm mt-1">від $110 / год</p>
+              <div class="flex justify-between border-t border-b border-[#E5E2D8] py-2 my-4 text-xs text-gray-500 mt-auto">
+                <span>Епоха: <strong class="text-gray-800">1950-ті</strong></span>
+                <span>Кузов: <strong class="text-gray-800">Седан</strong></span>
+              </div>
+              <a href="#catalog" class="w-full text-center py-2.5 border border-[#1B382B] text-[#1B382B] text-xs font-bold uppercase rounded-md hover:bg-[#1B382B] hover:text-white transition">Бронювати</a>
+            </div>
+          </article>
+
+          <!-- Картка 5 -->
+          <article class="bg-white rounded-lg border border-[#E5E2D8] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+            <div class="relative h-56 w-full">
+              <img src="assets/images/car-5.jpg" alt="Chevrolet Monte Carlo" class="w-full h-full object-cover">
+              <span class="absolute top-3 right-3 bg-[#1B382B] text-white text-[11px] font-bold px-2.5 py-1 rounded">1971</span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111827]">Chevrolet Monte Carlo V8</h3>
+              <p class="text-[#D4A359] font-bold text-sm mt-1">від $90 / год</p>
+              <div class="flex justify-between border-t border-b border-[#E5E2D8] py-2 my-4 text-xs text-gray-500 mt-auto">
+                <span>Епоха: <strong class="text-gray-800">1970-ті</strong></span>
+                <span>Кузов: <strong class="text-gray-800">Купе</strong></span>
+              </div>
+              <a href="#catalog" class="w-full text-center py-2.5 border border-[#1B382B] text-[#1B382B] text-xs font-bold uppercase rounded-md hover:bg-[#1B382B] hover:text-white transition">Бронювати</a>
+            </div>
+          </article>
+
+          <!-- Картка 6 -->
+          <article class="bg-white rounded-lg border border-[#E5E2D8] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+            <div class="relative h-56 w-full">
+              <img src="assets/images/car-6.jpg" alt="Porsche 911" class="w-full h-full object-cover">
+              <span class="absolute top-3 right-3 bg-[#1B382B] text-white text-[11px] font-bold px-2.5 py-1 rounded">1982</span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111827]">Porsche 911 SC Targa</h3>
+              <p class="text-[#D4A359] font-bold text-sm mt-1">від $130 / год</p>
+              <div class="flex justify-between border-t border-b border-[#E5E2D8] py-2 my-4 text-xs text-gray-500 mt-auto">
+                <span>Епоха: <strong class="text-gray-800">1980-ті</strong></span>
+                <span>Кузов: <strong class="text-gray-800">Тарга</strong></span>
+              </div>
+              <a href="#catalog" class="w-full text-center py-2.5 border border-[#1B382B] text-[#1B382B] text-xs font-bold uppercase rounded-md hover:bg-[#1B382B] hover:text-white transition">Бронювати</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Секція: Блог / Популярне -->
+    <section id="blog" class="py-16 bg-[#F7F5EE] border-t border-b border-[#E5E2D8]">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#D4A359]">Матеріали</span>
+          <h2 class="text-3xl font-black text-[#111827] font-display mt-1">Популярне</h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div class="bg-white rounded-lg overflow-hidden border border-[#E5E2D8] shadow-sm">
+            <img src="assets/images/blog-main.jpg" alt="Гайд з підбору ретро авто" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#D4A359]">Гайд</span>
+              <h3 class="text-xl font-bold text-[#111827] mt-1 mb-2">Підбір авто для зйомок кіно та кліпів</h3>
+              <p class="text-sm text-gray-600 mb-4">Як правильно обрати модель з урахуванням епохи, операторського світла та логістики знімального майданчика.</p>
+              <a href="#blog" class="text-sm font-bold text-[#1B382B] hover:text-[#D4A359] transition">Читати далі &rarr;</a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-white p-4 rounded-lg border border-[#E5E2D8] flex gap-4 items-center">
+              <img src="assets/images/blog-1.jpg" alt="Поради" class="w-20 h-16 object-cover rounded">
+              <div>
+                <span class="text-[10px] font-bold uppercase text-[#D4A359]">Поради</span>
+                <h4 class="font-bold text-sm text-[#111827]">Топ-5 ретро кабріолетів для весілля у Львові</h4>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-[#E5E2D8] flex gap-4 items-center">
+              <img src="assets/images/blog-2.jpg" alt="Сервіс" class="w-20 h-16 object-cover rounded">
+              <div>
+                <span class="text-[10px] font-bold uppercase text-[#D4A359]">Сервіс</span>
+                <h4 class="font-bold text-sm text-[#111827]">Як працює live-страхування без дрібного шрифту</h4>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-[#E5E2D8] flex gap-4 items-center">
+              <img src="assets/images/blog-3.jpg" alt="Історії" class="w-20 h-16 object-cover rounded">
+              <div>
+                <span class="text-[10px] font-bold uppercase text-[#D4A359]">Історії</span>
+                <h4 class="font-bold text-sm text-[#111827]">Репортаж з весняного ретро-пробігу класичних авто</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Медіа-блок (YouTube, Google Maps, Віджет погоди Open-Meteo) -->
+    <section id="media-hub" class="py-16 bg-white border-t border-[#E5E2D8]">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        
+        <!-- Заголовок секції -->
+        <div class="text-center mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#D4A359]">Мультимедіа</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-[#111827] font-display mt-1">Медіа-центр та Локація</h2>
+          <p class="text-gray-600 text-sm mt-2">Перегляньте огляд авто, актуальну погоду у Львові та завітайте до нашого автопарку</p>
+        </div>
+
+        <!-- Grid-сітка медіа-блоків -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          
+          <!-- Блок А: YouTube Відео -->
+          <div class="bg-[#F7F5EE] p-6 rounded-lg border border-[#E5E2D8] flex flex-col h-full shadow-sm">
+            <h3 class="text-base font-bold text-[#111827] mb-4 flex items-center gap-2 uppercase tracking-wide">
+              <i class="fa-solid fa-play text-[#1B382B]"></i> Огляд ретро-моделі
+            </h3>
+            <figure class="aspect-video w-full rounded-lg overflow-hidden shadow-md bg-black">
+              <iframe 
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/NdrehSzmQog" 
+                title="Огляд ретро-автомобіля RetroRace" 
+                loading="lazy" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </figure>
+            <p class="text-xs text-gray-500 mt-4">
+              Офіційний відеоогляд та презентація флагманського автомобіля з нашої колекції.
+            </p>
+          </div>
+
+          <!-- Блок Б: Google Maps (м. Львів, вул. Стрийська, 202) -->
+          <div class="bg-[#F7F5EE] p-6 rounded-lg border border-[#E5E2D8] flex flex-col h-full shadow-sm">
+            <h3 class="text-base font-bold text-[#111827] mb-4 flex items-center gap-2 uppercase tracking-wide">
+              <i class="fa-solid fa-location-dot text-[#1B382B]"></i> Наша локація
+            </h3>
+            <div class="aspect-video w-full rounded-lg overflow-hidden shadow-md">
+              <iframe 
+                class="w-full h-full border-0"
+                src="https://maps.google.com/maps?q=%D0%9B%D1%8C%D0%B2%D1%96%D0%B2,+%D0%B2%D1%83%D0%BB.+%D0%A1%D1%82%D1%80%D0%B8%D0%B9%D1%81%D1%8C%D0%BA%D0%B0,+202&z=15&output=embed" 
+                title="Локація автопарку RetroRace у Львові" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">
+              Пункт видачі: <strong>м. Львів, вул. Стрийська, 202</strong>. Чекаємо на вас щодня!
+            </p>
+          </div>
+
+          <!-- Блок В: Динамічний віджет погоди Open-Meteo -->
+          <aside class="bg-[#F7F5EE] p-6 rounded-lg border border-[#E5E2D8] flex flex-col h-full shadow-sm">
+            <h3 class="text-base font-bold text-[#111827] mb-4 flex items-center gap-2 uppercase tracking-wide">
+              <i class="fa-solid fa-cloud-sun text-[#D4A359]"></i> Погода у Львові
+            </h3>
+            
+            <div id="weather-widget" class="flex-1 flex flex-col justify-center items-center p-6 bg-white rounded-lg border border-[#E5E2D8] text-center">
+              <div id="weather-loading" class="text-xs text-gray-500 animate-pulse">
+                <i class="fa-solid fa-spinner fa-spin mr-1"></i> Завантаження метеоданих...
+              </div>
+              <div id="weather-content" class="hidden">
+                <div id="weather-temp" class="text-4xl font-black text-[#1B382B] font-display">--°C</div>
+                <div class="text-[11px] uppercase font-bold text-[#D4A359] mt-1 tracking-widest">м. Львів</div>
+                <p id="weather-desc" class="text-xs text-gray-600 mt-2">Оптимальні умови для поїздки</p>
+              </div>
+              <div id="weather-error" class="hidden text-xs text-red-500">
+                Не вдалося завантажити дані погоди.
+              </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">
+              Актуальні дані про стан дороги та погоду через Open-Meteo API.
+            </p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 7. Підвал (Footer) -->
+  <footer class="bg-[#111827] text-white pt-16 border-t border-gray-800 w-full" id="contacts">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <span class="text-2xl font-black text-white font-display tracking-tight"><span class="text-[#D4A359]">РЕТРО</span> АВТО</span>
+        <p class="text-sm text-gray-400 mt-4 leading-relaxed">Платформа прозорої оренди та підбору класичних автомобілів без прихованих платежів.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-[#D4A359] mb-4">Автопарк</h4>
+        <ul class="space-y-2 text-sm text-gray-300">
+          <li><a href="#catalog" class="hover:text-white transition">Кабріолети</a></li>
+          <li><a href="#catalog" class="hover:text-white transition">Класичні купе</a></li>
+          <li><a href="#catalog" class="hover:text-white transition">Маслкари</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-[#D4A359] mb-4">Сервіс</h4>
+        <ul class="space-y-2 text-sm text-gray-300">
+          <li><a href="#about" class="hover:text-white transition">Live-календар</a></li>
+          <li><a href="#about" class="hover:text-white transition">Тарифікація</a></li>
+          <li><a href="#about" class="hover:text-white transition">Страхові пакети</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-[#D4A359] mb-4">Контакти</h4>
+        <p class="text-sm text-gray-300">м. Львів, вул. Стрийська, 202</p>
+        <p class="text-sm text-gray-300 mt-1">info@retrorace.ua</p>
+        <p class="text-sm text-gray-300 mt-1">+38 (067) 000-00-00</p>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 px-6 lg:px-12 py-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <p>© 2026 Ретро Авто (RetroRace). Всі права захищено.</p>
+        <p>Лабораторна робота №6 ст. гр. ПП-26-1 Глови Семена</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Скрипт для роботи мобільного гамбургер-меню -->
+  <script>
+    const btn = document.getElementById('mobile-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+  </script>
+
+  <!-- Скрипти сайту -->
+  <script>
+    (function() {
+      // 1. Мобільне меню
+      const btn = document.getElementById('mobile-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+
+      // 2. Динамічний віджет погоди для Львова (Open-Meteo API)
+      const loadingEl = document.getElementById('weather-loading');
+      const contentEl = document.getElementById('weather-content');
+      const errorEl = document.getElementById('weather-error');
+      const tempEl = document.getElementById('weather-temp');
+      const descEl = document.getElementById('weather-desc');
+
+      if (!loadingEl) return;
+
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=49.8383&longitude=24.0232&current_weather=true')
+        .then(response => {
+          if (!response.ok) throw new Error('Помилка мережі');
+          return response.json();
+        })
+        .then(data => {
+          const temp = Math.round(data.current_weather.temperature);
+          tempEl.textContent = `${temp > 0 ? '+' : ''}${temp}°C`;
+          
+          if (temp >= 18) {
+            descEl.textContent = 'Ідеальна погода для кабріолета!';
+          } else if (temp >= 10) {
+            descEl.textContent = 'Прохолодно, радимо закритий дах';
+          } else {
+            descEl.textContent = 'Комфортна поїздка з підігрівом салону';
+          }
+
+          loadingEl.classList.add('hidden');
+          contentEl.classList.remove('hidden');
+        })
+        .catch(() => {
+          loadingEl.classList.add('hidden');
+          errorEl.classList.remove('hidden');
+        });
+    })();
+  </script>
+</body>
+</body>
+</html>
